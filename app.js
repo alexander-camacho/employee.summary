@@ -30,22 +30,22 @@ inquirer.prompt([
     },
     {
         type: 'input',
-        message: `What are the engineers names?`,//name of engineers
+        message: `What are the engineers names?`,
         name: 'engineerName',
     },
     {
         type: 'input',
-        message: `What are the engineers github links?`,//engineer github links
+        message: `What are the engineers github links?`,
         name: 'engineerGithub',
     },
     {
         type: 'input',
-        message: `How many interns are on your team?`,//number of interns
+        message: `How many interns are on your team?`,
         name: 'internTotal',
     },
     {
         type: 'input',
-        message: `What are the interns names?`,//name of interns
+        message: `What are the interns names?`,
         name: 'internName',
     },
     {
@@ -53,7 +53,19 @@ inquirer.prompt([
         message: `What is the name of the interns school?`,
         name: 'internSchool',
     },
-])
+]).then((response) => {
+
+    // Declare the file name
+    const filename = 'team.html'
+
+    const manager = new Manager(`${response.managerName}`,`${response.managerId}`,`${response.managerEmail}`,1)
+    //insert any functions here that will be used to render page elements
+
+
+    fs.writeFile(filename, 
+        `${manager.name}`,
+        (err) => err ? console.log(err) : console.log('File has been generated.'))
+})
 // and to create objects for each team member (using the correct classes as blueprints!)
 
 // After the user has input all employees desired, call the `render` function (required
