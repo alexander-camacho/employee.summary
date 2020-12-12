@@ -52,34 +52,46 @@ function init() {
 }
 
 function createManager() {
-    inquirer.prompt([
-        {
-            type: 'input',
-            message: `What is the manager's name?`,
-            name: 'managerName',
-        },
-        {
-            type: 'input',
-            message: `What is the manager's email address?`,
-            name: 'managerEmail',
-        },
-        {
-            type: 'input',
-            message: `What is the manager's ID number?`,
-            name: 'managerId',
-        },
-        {
-            type: 'input',
-            message: `What is your manager's office number?`,
-            name: 'managerOfficeNumber',
-        },
-    ]).then(response => {
-        const manager = new Manager(response.managerName, response.managerId, response.managerEmail, response.managerOfficeNumber)
-        employees.push(manager)
-
+    var hasManager = employees.filter(employee => employee.getRole() === "Manager")
+    
+    // if(){
+    //     console.log('The team can only have 1 manager!')
+    //     init()
+    // }
+    if(hasManager != ''){
+        console.log('The team already has a manager!')
         init()
+    } else {
 
-    })
+        inquirer.prompt([
+            {
+                type: 'input',
+                message: `What is the manager's name?`,
+                name: 'managerName',
+            },
+            {
+                type: 'input',
+                message: `What is the manager's email address?`,
+                name: 'managerEmail',
+            },
+            {
+                type: 'input',
+                message: `What is the manager's ID number?`,
+                name: 'managerId',
+            },
+            {
+                type: 'input',
+                message: `What is your manager's office number?`,
+                name: 'managerOfficeNumber',
+            },
+        ]).then(response => {
+            const manager = new Manager(response.managerName, response.managerId, response.managerEmail, response.managerOfficeNumber)
+            employees.push(manager)
+    
+            init()
+    
+        })
+    }
 }
 
 function createEngineer() {
@@ -157,18 +169,3 @@ function createPage() {
 }
 
 init()
-// and to create objects for each team member (using the correct classes as blueprints!)
-
-// After the user has input all employees desired, call the `render` function (required
-// above) and pass in an array containing all employee objects; the `render` function will
-// generate and return a block of HTML including templated divs for each employee!
-
-// After you have your html, you're now ready to create an HTML file using the HTML
-// returned from the `render` function. Now write it to a file named `team.html` in the
-// `output` folder. You can use the variable `outputPath` above target this location.
-// Hint: you may need to check if the `output` folder exists and create it if it
-// does not.
-
-// HINT: each employee type (manager, engineer, or intern) has slightly different
-// information; write your code to ask different questions via inquirer depending on
-// employee type.
