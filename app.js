@@ -36,6 +36,11 @@ inquirer.prompt([
     },
     {
         type: 'input',
+        message: `What are the engineers emails?`,
+        name: 'engineerEmail',
+    },
+    {
+        type: 'input',
         message: `What are the engineers github links?`,
         name: 'engineerGithub',
     },
@@ -52,17 +57,35 @@ inquirer.prompt([
     },
     {
         type: 'input',
+        message: `What is the interns email?`,
+        name: 'internEmail',
+    },
+    {
+        type: 'input',
         message: `What is the name of the interns school?`,
         name: 'internSchool',
     },
 ]).then((response) => {
 
+    let engineerTotal = `${response.engineerTotal}`
     // Declare the file name
-    const filename = 'team.html'
-
+    // const filename = 'team.html'
+    var employees = []
     const manager = new Manager(`${response.managerName}`, 1, `${response.managerEmail}`, 1)
-    
-    render()
+    employees.push(manager)
+
+    for(var i = 0; i < engineerTotal; i++){
+
+        const engineer = new Engineer(`${response.engineerName}`, 2, `${response.engineerEmail}`, `${response.engineerGithub}`)
+        employees.push(engineer)
+    }
+
+
+    const intern = new Intern(`${response.internName}`, 3, `${response.internEmail}`, `${response.internSchool}`)
+    employees.push(intern)
+
+    fs.writeFile(outputPath, render(employees),
+    (err) => err ? console.log(err) : console.log('File has been generated.'))
 }
 )
 // and to create objects for each team member (using the correct classes as blueprints!)
