@@ -24,9 +24,10 @@ inquirer.prompt([
         name: 'managerEmail',
     },
     {
-        type: 'input',
+        type: 'number',
         message: `How many engineers are on your team?`,
         name: 'engineerTotal',
+        default: 1,
     },
     {
         type: 'input',
@@ -39,9 +40,10 @@ inquirer.prompt([
         name: 'engineerGithub',
     },
     {
-        type: 'input',
+        type: 'number',
         message: `How many interns are on your team?`,
         name: 'internTotal',
+        default: 1,
     },
     {
         type: 'input',
@@ -59,56 +61,10 @@ inquirer.prompt([
     const filename = 'team.html'
 
     const manager = new Manager(`${response.managerName}`, 1, `${response.managerEmail}`, 1)
-    //insert any functions here that will be used to render page elements
-
-    fs.writeFile(filename,
-        `<!DOCTYPE html>
-        <html lang="en">
-        
-        <head>
-            <meta charset="UTF-8" />
-            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-            <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-            <title>My Team</title>
-            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-                integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-            <link rel="stylesheet" href="style.css">
-            <script src="https://kit.fontawesome.com/c502137733.js"></script>
-        </head>
-        
-        <body>
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-12 jumbotron mb-3 team-heading">
-                        <h1 class="text-center">My Team</h1>
-                    </div>
-                </div>
-            </div>
-            <div class="container">
-                <div class="row">
-                    <div class="team-area col-12 d-flex justify-content-center">
-                        <div class="card employee-card">
-                            <div class="card-header">
-                                <h2 class="card-title"> ${manager.name} </h2>
-                                <h3 class="card-title"><i class="fas fa-mug-hot mr-2"></i> ${manager.getRole()} </h3>
-                            </div>
-                            <div class="card-body">
-                                <ul class="list-group">
-                                    <li class="list-group-item">ID: ${manager.id}</li>
-                                    <li class="list-group-item">Email: <a href="mailto:{{ email }}"> ${manager.email} </a></li>
-                                    <li class="list-group-item">Office number: ${manager.officeNumber} </li>
-                                </ul>
-                            </div>
-                        </div>
-        
-                    </div>
-                </div>
-            </div>
-        </body>
-        
-        </html>`,
-        (err) => err ? console.log(err) : console.log('File has been generated.'))
-})
+    
+    render()
+}
+)
 // and to create objects for each team member (using the correct classes as blueprints!)
 
 // After the user has input all employees desired, call the `render` function (required
