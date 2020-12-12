@@ -67,21 +67,20 @@ inquirer.prompt([
     },
 ]).then((response) => {
 
-    let engineerTotal = `${response.engineerTotal}`
-    // Declare the file name
-    // const filename = 'team.html'
+    let engineerTotal = response.engineerTotal
+
     var employees = []
-    const manager = new Manager(`${response.managerName}`, 1, `${response.managerEmail}`, 1)
+    const manager = new Manager(response.managerName, 1, response.managerEmail, 1)
     employees.push(manager)
 
     for(var i = 0; i < engineerTotal; i++){
 
-        const engineer = new Engineer(`${response.engineerName}`, 2, `${response.engineerEmail}`, `${response.engineerGithub}`)
+        const engineer = new Engineer(response.engineerName, 2, response.engineerEmail, response.engineerGithub)
         employees.push(engineer)
     }
 
 
-    const intern = new Intern(`${response.internName}`, 3, `${response.internEmail}`, `${response.internSchool}`)
+    const intern = new Intern(response.internName, 3, response.internEmail, response.internSchool)
     employees.push(intern)
 
     if(!fs.existsSync(OUTPUT_DIR)){
