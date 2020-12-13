@@ -19,11 +19,13 @@ This is a Node CLI app that dynamically creates HTML based on user input. When t
 Enter the following command into the command line to install dependencies: ```npm i```
 
 ## Usage
-The app is used within the command line.
+The app is used within the command line. First, install any dependencies using ```npm i```, after the dependencies are done downloading the app can be used by calling ```node app.js```.
 
+This wll start the app which will first ask which role the user will be creating a profile for. After selecting, a series of questions related to the selected role will be asked. The information for that user will be stored and the user will be given the option to create another profile until the "Done" option is selected.
 
+*Only 1 "Manager" is able to be added per team, if "Manager" is selected again an error will show*
 
-## Contributing
+After the user selected done a folder named "Output" will be generated, and a web page displaying the team's information will be placed into this folder. This file will be named "team.html"
 
 
 ## Tests
