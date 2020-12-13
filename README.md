@@ -5,7 +5,9 @@
 ## Description
 This is a Node CLI app that dynamically creates HTML based on user input. When the app is ran the user will be asked a series of questions in order to display their team's basic info. The result will be a web page that provides quick access to the team's emails and github profiles.
 
-[Check out the video tutorial here!]()
+The repository also contains a ```sample.html``` file, which was generated using this applicaiton. 
+
+[Check out the video tutorial here!](https://drive.google.com/file/d/1qVkq6RFz3CYm3bHMJIPb0YWyoHi1uLSU/view?usp=sharing)
 
 ## Table of Contents
 - [Installation](#installation)        
